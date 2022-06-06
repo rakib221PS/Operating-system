@@ -1,0 +1,24 @@
+1.Find all regular files in directory /bin of size less than 2 kilobytes.
+find /bin -type f -size -10k
+2.Find all files of type lrwxrwxrwx modified in last 40 days in /lib.
+find /lib -type l -mmin -40
+-perm 777
+3.Find all files with dot inside name with owner root in /etc.
+find /etc -maxdepth 1 -type f -name "*.*"
+-user root
+4.Delete in current directory all files that are not regular file (be careful where you do this command).
+find -type l -delete
+-not -type -f
+5.Find all lines in file that contain two-digit numbers.
+grep '^[^0-9]*[0-9][^0-9]*[0-9][^0-9]*$' file
+'[0-9][0-9]'
+6.Find all lines in file that contain word of more than ten letters.
+grep -vwE '\w{1,10}'
+7.Find all lines in file that don’t contain any whitespace.
+egrep -v " " hello.txt
+8.In your home directory find all files and all lines that are a sentence (i.e. starts with an upper letter and ends with a dot).
+egrep -r "^[A-Z].*\.$" .
+9.In /etc find all files and all lines that contains exactly word ’Linux’ with information of number of line.
+grep -rn "Linux" /etc .
+10.In any two files find all lines that contain word ending with digit (for example word2), use a colour command.
+grep -E "*[0-9]" a.txt b.txt

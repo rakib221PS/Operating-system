@@ -1,0 +1,41 @@
+Find the information about dr Jakub Olejnik
+1.Username
+grep Olejnik /etc/passwd | awk -F: '{print " User name: "$1}'
+
+2.UID
+grep Olejnik /etc/passwd | awk -F: '{print " UID: "$3}'
+
+3.Primary group name
+groups jakubo | awk '{print $3}'
+
+4.Primary group GID
+grep Olejnik /etc/passwd | awk -F: '{print " GID: "$4}'
+
+5.Secondary groups
+groups jakubo | awk '{print $4}'
+
+6.Date of last logging
+3/15/2022
+
+Actual session
+7.Actual date
+3/15/2022
+
+8.Number of logged users
+6
+
+9.Usernames of logged users
+who | awk '{print $1}'
+
+Calendar
+10.Command to check the date of Orthodox Easter
+ncal -Jo
+
+11.Date of Orthodox Easter
+4/11/2022
+
+12.Command to check the date of Easter (for wester churches)
+ncal -e
+
+13.Date of Easter (for wester churches)
+4/17/2022

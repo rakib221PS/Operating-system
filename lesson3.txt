@@ -1,0 +1,19 @@
+Commad to change permission that only owner can read, write and execute the first file (use absolute mode).
+chmod 700 file1.txt
+
+2.Commad to change permission that any user can read, the group can read/write and the owner can read/write and execute the second file (use absolute mode).
+chmod 764 file2.txt
+
+3.Commad to change permission that owner can read, write and execute the third file. Any user should execute it and whenever execute it, it should be run with the privileges of the owner.
+chmod u+rwx,o+t file3.txt
+additional chmod u+s, without o+t
+
+4.Command to change permission of directory in order to every subfile created inside inherit the group.
+chmod g+s threefDirec
+
+5.Last access date of the first file
+3/15/2022
+6.Modification date of the first file
+3/15/2022
+7.The date of the last change of the first file
+3/15/2022

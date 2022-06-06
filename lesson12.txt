@@ -1,0 +1,45 @@
+1.Print all directories and all bat files in given as parameter directory.
+@ECHO OFF
+FOR /D %%d IN (%1\*) DO echo %%d
+
+FOR %%d IN (%1\*.bat) DO echo %%d
+2.Finds the smallest and the biggest number among given as a parameters.
+@ECHO OFF
+SET /A smallest=%1
+SET /A largest=%1
+:while
+IF [%1]==[] ( GOTO :end ) else ( IF [%1] LEQ [%smallest%] ( SET /A smallest=%1 ) )
+IF [%1]==[] ( GOTO :end ) else ( IF [%1] GEQ [%largest%] ( SET /A largest=%1 ) )
+SHIFT
+GOTO :while
+:end
+ECHO smallest=%smallest%
+ECHO largest=%largest%
+3.Removes all files in current directories and its subdirectories which starts with S.
+@ECHO OFF
+del /s %1\S*
+FOR /D %%p IN (%1\*) DO rmdir "%%p"
+4.Counts the binomial of two numbers given as a parameter.
+@ECHO OFF
+SETLOCAL ENABLEDELAYEDEXPANSION
+SET /A n=%1
+SET /A k=%2
+SET /A m=%n%-%k%
+SET /A ns=1
+SET /A ks=1
+SET /A ms=1
+for /L %%x IN (1, 1, %n%) do (
+SET /A ns=!ns!*%%x
+)
+
+for /l %%x IN (1, 1, %k%) do (
+SET /A ks=!ks!*%%x
+)
+
+for /l %%x IN (1, 1, %m%) do (
+SET /A ms=!ms!*%%x
+)
+ECHO %ms% and %ks% and %ns%
+
+SET /A binomial=%ns%/(%ks%*%ms%)
+ECHO %binomial%

@@ -1,0 +1,62 @@
+1.Run two processes in background (for example sleep 300). Paste here the list of jobs and the list of running processes.
+redcoder@xor:~$ sleep 900 &
+[1] 203757
+redcoder@xor:~$ sleep 1000 &
+[2] 203764
+redcoder@xor:~$ jobs
+[1]-  Running                 sleep 900 &
+[2]+  Running                 sleep 1000 &
+redcoder@xor:~$ ps
+    PID TTY          TIME CMD
+ 203741 pts/0    00:00:00 bash
+ 203757 pts/0    00:00:00 sleep
+ 203764 pts/0    00:00:00 sleep
+ 203775 pts/0    00:00:00 ps
+
+
+2.Stop both processes. Paste here the list of jobs and the list of running processes.
+redcoder@xor:~$ fg 1
+sleep 900
+^Z
+[1]+  Stopped                 sleep 900
+redcoder@xor:~$ fg 2
+sleep 1000
+^Z
+[2]+  Stopped                 sleep 1000
+redcoder@xor:~$ jobs
+[1]-  Stopped                 sleep 900
+[2]+  Stopped                 sleep 1000
+redcoder@xor:~$ ps
+    PID TTY          TIME CMD
+ 203741 pts/0    00:00:00 bash
+ 203757 pts/0    00:00:00 sleep
+ 203764 pts/0    00:00:00 sleep
+ 203845 pts/0    00:00:00 ps
+
+
+3.Kill the first process kill and rerurn the second one. Paste here the list of jobs and the list of running processes.
+redcoder@xor:~$ kill -9 203757
+redcoder@xor:~$ jobs
+[1]-  Killed                  sleep 900
+[2]+  Stopped                 sleep 1000
+redcoder@xor:~$ ps
+    PID TTY          TIME CMD
+ 203741 pts/0    00:00:00 bash
+ 203764 pts/0    00:00:00 sleep
+ 203995 pts/0    00:00:00 ps
+redcoder@xor:~$ bg %2
+[2]+ sleep 1000 &
+redcoder@xor:~$ jobs
+[2]+  Running                 sleep 1000 &
+redcoder@xor:~$ ps
+    PID TTY          TIME CMD
+ 203741 pts/0    00:00:00 bash
+ 203764 pts/0    00:00:00 sleep
+ 204032 pts/0    00:00:00 ps
+
+4.How many processes are run in xor? How many is sleeping? How many zombies?
+ps -e |wc -l, ps -aux | awk '$8~/[SD]/{Number++}END{print Number}', ps -aux | awk '$8~/[zZ]/{Number++}END{print Number}'
+5.Write two commands, that
+- Creates a directory or a file (only one thing).
+- Creates a directory and a file (both of them).
+mkdir hey || touch hey.txt, mkdir hi && touch hi/hi.txt

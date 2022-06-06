@@ -1,0 +1,88 @@
+1.Prints the person (name and surname) that is actually logged for the longest time.
+#!/bin/bash
+userName=`who|sort -k3|head -1|awk '{print $1}'`
+nameAndSureName=`cat /etc/passwd|grep "$userName"|awk -F":" '{print $5}'`
+echo "$nameAndSureName"
+
+2.Is a simple calculator. Script has 2 parameters (numbers) then write 4 possibilities +, -, *, / and make the calculation. After printing the result the script is ended. Remember about division by 0. (Use select loop)
+#!/bin/bash
+echo "Enter number n: "
+read n
+echo "Enter number m: "
+read m
+echo -e "Enter operation type \n Addition: 1 \n Subtraction: 2 \n Multiplication: 3 \n Division: 4"
+calculator(){
+        select OPERATION in 1 2 3 4
+        do
+        case "$OPERATION" in
+                1)val=`expr  $1 + $2`
+                        echo $val
+                        ;;
+                2)val=`expr  $1 - $2`
+                        echo $val
+                        ;;
+                3)val=`expr  $1 \* $2`
+                        echo $val
+                        ;;
+                4) if [ $2 == 0 ]
+                then
+                        echo "Denumerator can not be zero"
+                else
+                        val=`expr  $1 / $2`
+                        echo $val
+                fi
+                ;;
+        none)
+                break
+                ;;
+        *)
+                echo "Enrro: Invalid selection"
+                ;;
+esac
+done
+}
+calculator $n $m
+
+3.Prints all processes (PID, PPID, USER, COMMAND) that are children of given as a parameter PID.
+#!/bin/bash
+isExists=`ps -l|grep "$1"`
+j=0
+if [[ $isExists ]]
+then
+        last=`echo $1|cut -b 6`
+        pid=`ps -l|awk 'NR>1{print $5}'`
+        for i in $pid
+        do
+                la=`echo "$i"|cut -b 6`
+                if [[ $la == $last ]]
+                then
+                        ps -u|grep "$i"|awk 'NR>1{print $1,$2,$i,$11}'
+                        ((j=j+1))
+                fi
+        done
+else
+        echo "There is no children"
+        ((j=j+1))
+fi
+
+if [[ $j == 0 ]]
+then
+        echo "There is no children"
+fi
+
+4.Prints the longest word from the words given as a parameter
+#!/bin/bash
+read -a arr
+longest(){
+        element=""
+        a=("$@")
+for WORD in ${a[@]}
+do
+        if [ ${#WORD} -gt ${#element} ]
+        then
+                 element=$WORD
+        fi
+done
+echo $element
+}
+longest "${arr[@]}"

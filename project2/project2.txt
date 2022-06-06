@@ -1,0 +1,47 @@
+Project 1
+-------------------------------------------------------------------------------------------------------------------
+#!/usr/bin/awk -f
+BEGIN{
+        if ( ARGV[1] == 0 ){
+                print "No file name"
+                n=0
+                exit
+                }
+                else if( ARGV[2] != 0 ){
+                        print "Too many file name"
+                n=0
+                exit
+
+                        }
+                else{
+                n=1
+                print "Enter the length of line"
+                getline number < "-"
+        }
+}
+{if (length($0)>number){printf "%d %s\n",NR,$0}else{num++}}
+END{if (n==0){exit}else{print "Omitted lines: ",num}}
+
+---------------------------------------------------------------------------------------------------------------------
+Project 2
+---------------------------------------------------------------------------------------------------------------------
+@ECHO OFF
+IF [%1]==[] (
+   ECHO No parameter
+   GOTO :end
+)
+IF [%2]==[] (
+   ECHO Too few parameters
+   GOTO :end
+)
+IF [%3]==[] (
+IF EXIST %1 ( 
+FOR %%d IN (%1\%2*) DO echo %%d
+del %1\%2*
+ ) ELSE ( ECHO No directory %1 )
+GOTO :end
+) ELSE (  
+ECHO Too many parameter
+GOTO :end
+)
+:end

@@ -1,0 +1,30 @@
+1.How using sed you:
+-print from 4th to 56th lines from file /etc/x and change : and , to space. Save it as a file fileNew.
+sed -n '4,56p' /etc/x|sed -e 's/:/ /g' -e 's/,/ /g'>replaceSed.txt
+2.How using sed you:
+-add a new line ’New test line’ in fileNew after line 5. Change the existing file.
+sed '3 a New test line' fileNew>new.txt|cp new.txt fileNew
+3.Write awk script that:
+From file from the previous taks. Then print in such format:
+ 
+1. Anna Black (abalsk)
+…
+At the end of file print such summary:
+1. Length of name and surname
+2. Length of name and surname
+….
+Average length of the name and surname
+
+There should be numbers of lenght and average.
+#!/usr/bin/awk -f
+BEGIN{FS=":"}
+{
+        printf "%d %s(%s)\n",NR,$5,$1;
+        printf "Length of name and surename %d\n",length($5);
+        total=total+length($5);
+        num++
+}
+#BEGIN{FS=":"}{printf "Length of name and surename %d\n",length($5);total=total+length($5);num++}
+END{print "Number of length ",num" and Average of name and sure name is ",total/num}
+
+

@@ -1,0 +1,28 @@
+1.Turn on the line numbers in vi.
+:set nu
+2.Delete 3 lines at once in command mode in vi.
+3dd
+3.Quit vi without saving changes.
+:q!
+Write a regular expression for
+4.Name and surnames (two words with space, both starting with a capital letter and containing only letters).
+[A-Z][A-Za-z]*\s[A-Z][A-Za-z]*
+5.Date in format 25.12.2019 (dd.mm.yyyy).
+/^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/
+6.Words that have minimum two vowel inside.
+*[AEIOUaeiou]{2,}*
+([a-z]*[aeiou][a-z]*){2}
+7.The car registration number in Poland:
+- 2 letters + 5 digits (from 00001 to 99999) 
+- 2 letters + 4 digits (from 0001 to 9999) + 1 letter
+  - 2 letters + 3 digits (from 001 to 999) + 2 letters 
+  - 2 letters + 1 digit + 1 letter + 3 digits (from 001 to 999) – the firs digit cannot be 0
+  - 2 letters + 1 digit + 2 letters + 2 digits (from 01 to 99)
+^[A-Za-z]{2}\d{4}[1-9]$
+^[A-Za-z]{2}\d{3}[1-9][A-Za-z}$
+^[A-Za-z]{2}\d{2}[1-9][A-Za-z}{2}$
+^[A-Za-z]{2}\d{1}[A-Za-z}{1}\d{2}[1-9]$
+^[A-Za-z]{2}\d{1}[A-Za-z}{2}\d{1}[1-9]$
+
+
+

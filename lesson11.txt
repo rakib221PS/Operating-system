@@ -1,0 +1,26 @@
+1.In percent how may people use Windows and how many Linux? Why?
+Windows 75%
+Linux 5%
+Simply because Windows is the dominant operating system, there is much more (and usually higher quality) software available for it than for Linux. Much of it comes from evil Microsoft itself. A good example goes straight to one of open source's greatest recent successes
+2.Match the commands from Windows and Linux:
+Windows: cd, cls, copy, del, dir, findstr, help, move, ren, tasklist, taskkill, type
+Linux: cat, cd, clear, cp, grep, kill, ls, man, mv, ps, rm
+windows----linux
+----------------
+cd    -    cd
+cls   -    clear
+copy  -    copy
+del   -    rm
+dir   -    ls
+findstr -  grep
+help  -    man
+move  -    mv
+ren   -    mv
+taskList - ps
+tarkKill - kill
+type  -    cat
+3.Find where in Windows you can change that all files are visible (even hidden).
+Windows 11
+--------------
+Open File Explorer from the taskbar. 
+Select View > Show > Hidden items.

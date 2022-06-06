@@ -1,0 +1,73 @@
+1.Prints the name of actual month (date +%m) in another language than English.
+month=`date|cut -d " " -f 3`
+dat=`date|cut -d " " -f 2`
+case "$month" in
+        "Jan")echo "$dat Styczen"
+                ;;
+        "Feb")echo "$dat Luty"
+                ;;
+        "Mar")echo "$dat Marsz"
+                ;;
+        "Apr")echo "$dat Kwiecien"
+                ;;
+        "May")echo "$dat Moze"
+                ;;
+        "Jun")echo "$dat Czerwiec"
+                ;;
+        "Jul")echo "$dat Lipiec"
+                ;;
+        "Aug")echo "$dat Sierpien"
+                ;;
+        "Sep")echo "$dat Wrzesien"
+                ;;
+        "Oct")echo "$dat Pazdziernik"
+                ;;
+        "Nov")echo "$dat Listopad"
+                ;;
+        "Dec")echo "$dat Grudzien"
+                ;;
+esac
+
+2.Has one parameter and checks is this argument is name of student (group students), if so it prints the name and surname of student and information when he was last logged (result of finger command). (tip if [ ”$NAME” ])
+#!/bin/bash
+read UserName
+IsExists=`cat /etc/group|grep "$UserName"`
+if [[ $IsExists ]]
+then
+        NameAndSureName=`cat /etc/passwd|grep "$UserName"|awk -F : '{print $5}'`
+        LastLogin=`finger $UserName|awk 'NR==3 { print $0}'`
+        echo "Name and sure name: $NameAndSureName && Last login details: $LastLogin"
+else
+        echo "The user is not exist"
+fi
+
+3.Has two parameters, the first one name of directory, the second one of file. If it is possible script should create a directory and inside it the file. If it is not possible it should print message why not.
+#!/bin/bash
+echo Enter directory name:
+read direc
+echo Enter file name:
+read fil
+if [[ $direc && $fil ]]
+then
+        `mkdir $direc`
+        `touch $direc/$fil`
+else
+        echo "One of them or both arguments are empty"
+fi
+
+4.Asks user to give his weight (in kg) and height (in cm) and age. Prints the information that adult user is too big if w>h-80 or too small if w
+#!/bin/bash
+echo "Enter weight of the user: "
+read weight
+echo "Enter height of the user: "
+read height
+echo "Enter age of the user: "
+read age
+sub=`expr $height - 80`
+if [[ $weight -gt $sub ]]
+then
+        echo "Too big"
+else
+        echo "Not too big"
+fi
+

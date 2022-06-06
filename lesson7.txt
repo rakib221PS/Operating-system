@@ -1,0 +1,14 @@
+1.Count links in /etc?
+find /etc -maxdepth 1 -type l -ls | wc -l
+2.Count links in /etc and in all its subdirectories?
+find /etc -type l -ls | wc -l
+3.Print lines from 10 to 15 from any file.
+head -10 /etc/passwd|tail -5
+4.What is the size of the biggest regular file in /etc?
+ls -lSH /etc | awk '$1~/^-/{print}' | head -1 | awk '{print $5}'
+5.Print all users sorted by last name and save it in file users.txt.
+cat /etc/passwd | sort -k2>users.txt
+6.Print all users that belongs to group ’users’ and their name starts with ’A’.
+ cat /etc/group | awk -F: '$4~/^A/{print}' | grep "^users"
+7.Check IP address of users who is logged for the longest time.
+last | sort -t- -k8 | head -2|awk '{print $3}'

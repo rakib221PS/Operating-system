@@ -1,0 +1,54 @@
+1. Create in your home directory such structure of directories:
+-Animals
+   -Mammals
+      -Monkeys
+      -Lions
+   -Reptiles
+   -Birds
+      -Parrots
+
+2. Create files (with some random text)
+-ape in directory Monkeys
+-gorilla in directory Monkeys
+-asiaticLion in directory Birds
+-budgerigar in directory Parrots
+
+1.List all files in Animals directory as tree.
+Animals
+├── Birds
+│   ├── asiaticLion
+│   └── Parrots
+│       └── budgerigar
+├── Mammals
+│   ├── Lions
+│   └── Monkeys
+│       ├── ape
+│       └── gorilla
+└── Reptiles
+
+Part 2
+1. Add new two directories to directory Animals:  Vertebrates and Insects.
+2. Move directories Mammals and Birds (with connect) to Vertebrates.
+3. Create file fly in directory Inscets. 
+4. Remove directory Reptiles.
+5. Create symbolic link favouriteAnimal in directory Animals that points to asiaticLion.
+2.List all files in Animals directory as tree.
+Animals
+├── favouriteAnimal -> Animals/Vertebrates/Birds/asiaticLion
+├── Insects
+│   └── fly
+└── Vertebrates
+    ├── Birds
+    │   ├── asiaticLion
+    │   └── Parrots
+    │       └── budgerigar
+    └── Mammals
+        ├── Lions
+        └── Monkeys
+            ├── ape
+            └── gorilla
+
+3.Size of Birds directory
+8192 bytes
+4.Size of Mammals directory
+12288 bytes
